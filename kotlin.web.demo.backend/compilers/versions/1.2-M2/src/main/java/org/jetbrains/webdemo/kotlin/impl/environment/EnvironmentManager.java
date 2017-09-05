@@ -79,7 +79,7 @@ public class EnvironmentManager {
 
     public static void reinitializeJavaEnvironment(){
         ApplicationManager.setApplication(
-                environment.getApplication(),
+                KotlinCoreEnvironment.Companion.getApplicationEnvironment().getApplication(),
                 registry,
                 disposable
         );

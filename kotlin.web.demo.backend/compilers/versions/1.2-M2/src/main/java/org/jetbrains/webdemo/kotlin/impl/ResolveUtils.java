@@ -106,7 +106,7 @@ public class ResolveUtils {
                 new Function1<GlobalSearchScope, PackagePartProvider>() {
                     @Override
                     public PackagePartProvider invoke(GlobalSearchScope globalSearchScope) {
-                        return new JvmPackagePartProvider(EnvironmentManager.getEnvironment(), globalSearchScope);
+                        return new JvmPackagePartProvider(LanguageVersionSettingsImpl.DEFAULT, globalSearchScope);
                     }
                 },
                 new Function2<StorageManager, Collection<? extends KtFile>, DeclarationProviderFactory>() {
