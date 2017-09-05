@@ -47,8 +47,8 @@ import org.jetbrains.kotlin.cli.jvm.config.JvmContentRootsKt;
 import org.jetbrains.kotlin.config.CommonConfigurationKeys;
 import org.jetbrains.kotlin.config.CompilerConfiguration;
 import org.jetbrains.kotlin.config.JVMConfigurationKeys;
-import org.jetbrains.kotlin.config.LanguageVersion;
 import org.jetbrains.kotlin.config.TargetPlatformVersion;
+import org.jetbrains.kotlin.container.DslKt;
 import org.jetbrains.kotlin.diagnostics.rendering.DefaultErrorMessages;
 import org.jetbrains.kotlin.js.analyze.SuppressUnusedParameterForJsNative;
 import org.jetbrains.kotlin.js.resolve.diagnostics.DefaultErrorMessagesJs;
@@ -79,7 +79,7 @@ public class EnvironmentManager {
 
     public static void reinitializeJavaEnvironment(){
         ApplicationManager.setApplication(
-                environment.getApplication(),
+                KotlinCoreEnvironment.Companion.getApplicationEnvironment().getApplication(),
                 registry,
                 disposable
         );

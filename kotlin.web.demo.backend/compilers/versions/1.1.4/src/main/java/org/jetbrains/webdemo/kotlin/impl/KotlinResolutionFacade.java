@@ -19,6 +19,7 @@ package org.jetbrains.webdemo.kotlin.impl;
 import com.intellij.openapi.project.Project;
 import com.intellij.psi.PsiElement;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import org.jetbrains.kotlin.analyzer.AnalysisResult;
 import org.jetbrains.kotlin.container.ComponentProvider;
 import org.jetbrains.kotlin.descriptors.DeclarationDescriptor;
@@ -97,6 +98,12 @@ public class KotlinResolutionFacade implements ResolutionFacade {
     @NotNull
     @Override
     public BindingContext analyze(Collection<? extends KtElement> collection, BodyResolveMode bodyResolveMode) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Nullable
+    @Override
+    public <T> T tryGetFrontendService(PsiElement psiElement, Class<T> aClass) {
         throw new UnsupportedOperationException();
     }
 }

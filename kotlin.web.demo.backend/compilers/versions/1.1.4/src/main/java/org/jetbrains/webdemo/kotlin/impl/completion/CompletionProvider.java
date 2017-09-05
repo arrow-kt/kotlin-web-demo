@@ -67,7 +67,6 @@ public class CompletionProvider {
             descriptorRendererOptions.setClassifierNamePolicy(ClassifierNamePolicy.SHORT.INSTANCE);
             descriptorRendererOptions.setTypeNormalizer(IdeDescriptorRenderers.APPROXIMATE_FLEXIBLE_TYPES);
             descriptorRendererOptions.setParameterNameRenderingPolicy(ParameterNameRenderingPolicy.NONE);
-            descriptorRendererOptions.setRenderDefaultValues(false);
             descriptorRendererOptions.setTypeNormalizer(new Function1<KotlinType, KotlinType>() {
                 @Override
                 public KotlinType invoke(KotlinType kotlinType) {

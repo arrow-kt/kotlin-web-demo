@@ -27,6 +27,7 @@ import org.jetbrains.kotlin.analyzer.AnalysisResult;
 import org.jetbrains.kotlin.cli.jvm.compiler.CliLightClassGenerationSupport;
 import org.jetbrains.kotlin.cli.jvm.compiler.JvmPackagePartProvider;
 import org.jetbrains.kotlin.cli.jvm.compiler.KotlinCoreEnvironment;
+import org.jetbrains.kotlin.cli.jvm.compiler.TopDownAnalyzerFacadeForJVM;
 import org.jetbrains.kotlin.codegen.ClassBuilderFactories;
 import org.jetbrains.kotlin.codegen.state.GenerationState;
 import org.jetbrains.kotlin.config.CompilerConfiguration;
@@ -50,14 +51,8 @@ import org.jetbrains.kotlin.js.config.JsConfig;
 import org.jetbrains.kotlin.js.resolve.JsPlatform;
 import org.jetbrains.kotlin.name.Name;
 import org.jetbrains.kotlin.psi.KtFile;
-import org.jetbrains.kotlin.resolve.AnnotationResolverImpl;
-import org.jetbrains.kotlin.resolve.BindingContext;
-import org.jetbrains.kotlin.resolve.BindingTrace;
-import org.jetbrains.kotlin.resolve.CompilerEnvironment;
-import org.jetbrains.kotlin.resolve.LazyTopDownAnalyzer;
-import org.jetbrains.kotlin.resolve.TopDownAnalysisMode;
+import org.jetbrains.kotlin.resolve.*;
 import org.jetbrains.kotlin.resolve.calls.smartcasts.DataFlowInfo;
-import org.jetbrains.kotlin.resolve.jvm.TopDownAnalyzerFacadeForJVM;
 import org.jetbrains.kotlin.resolve.jvm.extensions.AnalysisHandlerExtension;
 import org.jetbrains.kotlin.resolve.lazy.FileScopeProviderImpl;
 import org.jetbrains.kotlin.resolve.lazy.KotlinCodeAnalyzer;
@@ -111,7 +106,7 @@ public class ResolveUtils {
                 new Function1<GlobalSearchScope, PackagePartProvider>() {
                     @Override
                     public PackagePartProvider invoke(GlobalSearchScope globalSearchScope) {
-                        return new JvmPackagePartProvider(EnvironmentManager.getEnvironment(), globalSearchScope);
+                        return new JvmPackagePartProvider(LanguageVersionSettingsImpl.DEFAULT, globalSearchScope);
                     }
                 },
                 new Function2<StorageManager, Collection<? extends KtFile>, DeclarationProviderFactory>() {
