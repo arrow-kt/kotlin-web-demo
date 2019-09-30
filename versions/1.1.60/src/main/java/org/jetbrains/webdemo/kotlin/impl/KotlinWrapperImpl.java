@@ -18,6 +18,7 @@ package org.jetbrains.webdemo.kotlin.impl;
 
 import org.jetbrains.kotlin.cli.jvm.compiler.KotlinCoreEnvironment;
 import org.jetbrains.kotlin.psi.KtFile;
+import org.jetbrains.webdemo.ArrowVersionConfig;
 import org.jetbrains.webdemo.KotlinVersionConfig;
 import org.jetbrains.webdemo.kotlin.KotlinWrapper;
 import org.jetbrains.webdemo.kotlin.KotlinWrappersManager;
@@ -37,6 +38,8 @@ import java.util.Map;
 import java.util.stream.Stream;
 
 public class KotlinWrapperImpl implements KotlinWrapper {
+    private String arrowVersion;
+    private Path arrowLibraries;
     private Path jarsFolder;
     private String kotlinVersion;
     private String kotlinBuild;
@@ -44,11 +47,13 @@ public class KotlinWrapperImpl implements KotlinWrapper {
     private Path userCodeLibraries;
 
     @Override
-    public void init(List<Path> javaLibraries, KotlinVersionConfig config) {
-        this.kotlinVersion = config.getVersion();
-        this.kotlinBuild = config.getBuild();
+    public void init(List<Path> javaLibraries, ArrowVersionConfig arrowConfig, KotlinVersionConfig kotlinConfig) {
+        this.arrowVersion = arrowConfig.getVersion();
+        this.kotlinVersion = kotlinConfig.getVersion();
+        this.kotlinBuild = kotlinConfig.getBuild();
         WrapperLogger.init(kotlinVersion);
         wrapperFolder = KotlinWrappersManager.INSTANCE.getWrappersDir().resolve(kotlinVersion);
+        arrowLibraries = KotlinWrappersManager.INSTANCE.getWrappersDir().resolve("arrow").resolve(arrowVersion).resolve("libraries");
         jarsFolder = wrapperFolder.resolve("kotlin");
         userCodeLibraries = wrapperFolder.resolve("libraries");
         WrapperSettings.JS_LIB_ROOT = wrapperFolder.resolve("js");
@@ -103,6 +108,10 @@ public class KotlinWrapperImpl implements KotlinWrapper {
         File[] files = userCodeLibraries.toFile().listFiles(pathname -> pathname.getAbsolutePath().matches(".*\\.jar$"));
         if (files != null) {
             Stream.of(files).forEach(libName -> libraries.add(libName.toPath()));
+        }
+        File[] arrowFiles = arrowLibraries.toFile().listFiles(pathname -> pathname.getAbsolutePath().matches(".*\\.jar$"));
+        if (arrowFiles != null) {
+            Stream.of(arrowFiles).forEach(libName -> libraries.add(libName.toPath()));
         }
         return libraries;
     }

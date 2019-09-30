@@ -26,6 +26,8 @@ buildscript {
 ext.kotlinVersion = kotlin_version
 ext.kotlinConfigs = gradle.ext.kotlinConfigs
 ext.kotlinVersions = kotlinConfigs.collect { it.version }
+ext.arrowConfigs = gradle.ext.arrowConfigs
+ext.arrowVersions = arrowConfigs.collect { it.version }
 
 allprojects {
     repositories {
@@ -88,6 +90,10 @@ configure([
 }
 
 task copyKotlinLibs() {}
+
+for (arrowVersion in arrowVersions) {
+    copyKotlinLibs.dependsOn(":arrow:$arrowVersion:copyKotlinLibs")
+}
 
 for (kotlinVersion in kotlinVersions) {
     copyKotlinLibs.dependsOn(":versions:$kotlinVersion:copyKotlinLibs")

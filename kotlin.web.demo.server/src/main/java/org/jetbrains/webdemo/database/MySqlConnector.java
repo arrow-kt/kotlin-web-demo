@@ -275,16 +275,17 @@ public class MySqlConnector {
         int userId = getUserId(userInfo);
         try (Connection connection = dataSource.getConnection();
              PreparedStatement st = connection.prepareStatement(
-                     "UPDATE projects SET projects.args = ? , projects.run_configuration = ?, projects.type = ?, projects.compiler_version = ? " +
+                     "UPDATE projects SET projects.args = ? , projects.run_configuration = ?, projects.type = ?, projects.compiler_version = ?, projects.arrow_version = ? " +
                              "WHERE projects.owner_id = ?  AND projects.name = ? AND projects.public_id = ?")
         ) {
             st.setString(1, project.args);
             st.setString(2, project.confType);
             st.setString(3, projectType);
             st.setString(4, project.getCompilerVersion());
-            st.setString(5, userId + "");
-            st.setString(6, escape(project.name));
-            st.setString(7, publicId);
+            st.setString(5, project.getArrowVersion());
+            st.setString(6, userId + "");
+            st.setString(7, escape(project.name));
+            st.setString(8, publicId);
             int rowsUpdated = st.executeUpdate();
             if (rowsUpdated != 1) {
                 DatabaseOperationException e = new DatabaseOperationException(rowsUpdated + " projects were updated");
@@ -483,6 +484,7 @@ public class MySqlConnector {
                         rs.getString("run_configuration"),
                         rs.getString("origin"),
                         rs.getString("compiler_version"),
+                        rs.getString("arrow_version"),
                         readOnlyFileNames
                 );
                 ExamplesUtils.addUnmodifiableFilesToProject(project);

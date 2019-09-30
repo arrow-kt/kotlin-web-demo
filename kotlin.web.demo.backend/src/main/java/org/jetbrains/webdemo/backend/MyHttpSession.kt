@@ -18,6 +18,7 @@ package org.jetbrains.webdemo.backend
 
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
+import org.apache.commons.logging.LogFactory
 import org.jetbrains.webdemo.ErrorWriter
 import org.jetbrains.webdemo.Project
 import org.jetbrains.webdemo.ResponseUtils
@@ -31,11 +32,13 @@ import org.jetbrains.webdemo.kotlin.datastructures.TranslationResult
 import org.jetbrains.webdemo.kotlin.exceptions.KotlinCompileException
 import java.io.IOException
 import java.util.*
+import java.util.logging.Logger
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 
 class MyHttpSession {
     private val objectMapper = jacksonObjectMapper()
+    private val log = LogFactory.getLog(MyHttpSession::class.java)
 
     fun handle(request: HttpServletRequest, response: HttpServletResponse) {
         try {
@@ -66,13 +69,17 @@ class MyHttpSession {
     }
 
     private fun sendExecutorResult(request: HttpServletRequest, response: HttpServletResponse) {
+        var arrowVersion: String? = null
         var kotlinVersion: String? = null
         val projectString = request.getParameter("project")
         try {
             val currentProject = objectMapper.readValue<Project>(projectString)
-            kotlinVersion = getAvailableKotlinVersion(currentProject.compilerVersion)
-
-            val wrapper = KotlinWrappersManager.getKotlinWrapper(kotlinVersion)
+            arrowVersion = getAvailableArrowVersion(currentProject.arrowVersion)
+            kotlinVersion = getAvailableKotlinVersion(currentProject.arrowVersion, currentProject.compilerVersion)
+            val wrapper = KotlinWrappersManager.getKotlinWrapper(arrowVersion, kotlinVersion)
+            log.error("Wrapper folder: ${wrapper?.wrapperFolder?.toUri()?.path.orEmpty()}")
+            log.error("Kotlin libraries: ${wrapper?.kotlinLibraries?.map { path -> path?.toUri()?.path }?.joinToString()}")
+            log.error("Kotlin runtime jar: ${wrapper?.kotlinRuntimeJar?.map { path -> path?.toUri()?.path }?.joinToString()}")
             if (wrapper == null) {
                 response.sendResponse(HttpServletResponse.SC_BAD_REQUEST, "Unsupported kotlin version: $kotlinVersion")
                 return
@@ -154,6 +161,7 @@ class MyHttpSession {
     }
 
     fun sendCompletionResult(request: HttpServletRequest, response: HttpServletResponse) {
+        var arrowVersion: String? = null
         var kotlinVersion: String? = null
         val projectString = request.getParameter("project")
         try {
@@ -161,8 +169,9 @@ class MyHttpSession {
             val line = Integer.parseInt(request.getParameter("line"))
             val ch = Integer.parseInt(request.getParameter("ch"))
             val currentProject = objectMapper.readValue(projectString, Project::class.java)
-            kotlinVersion = getAvailableKotlinVersion(currentProject.compilerVersion)
-            val wrapper = KotlinWrappersManager.getKotlinWrapper(kotlinVersion)
+            arrowVersion = getAvailableArrowVersion(currentProject.arrowVersion)
+            kotlinVersion = getAvailableKotlinVersion(currentProject.arrowVersion, currentProject.compilerVersion)
+            val wrapper = KotlinWrappersManager.getKotlinWrapper(arrowVersion, kotlinVersion)
             if (wrapper == null) {
                 response.sendResponse(HttpServletResponse.SC_BAD_REQUEST, "Unsupported kotlin version: $kotlinVersion")
                 return
@@ -185,12 +194,14 @@ class MyHttpSession {
     }
 
     fun sendHighlightingResult(request: HttpServletRequest, response: HttpServletResponse) {
+        var arrowVersion: String? = null
         var kotlinVersion: String? = null
         val projectString = request.getParameter("project")
         try {
             val currentProject: Project = objectMapper.readValue<Project>(projectString)
-            kotlinVersion = getAvailableKotlinVersion(currentProject.compilerVersion)
-            val wrapper = KotlinWrappersManager.getKotlinWrapper(kotlinVersion)
+            arrowVersion = getAvailableArrowVersion(currentProject.arrowVersion)
+            kotlinVersion = getAvailableKotlinVersion(currentProject.arrowVersion, currentProject.compilerVersion)
+            val wrapper = KotlinWrappersManager.getKotlinWrapper(arrowVersion, kotlinVersion)
             if (wrapper == null) {
                 response.sendResponse(HttpServletResponse.SC_BAD_REQUEST, "Unsupported kotlin version: $kotlinVersion")
                 return
@@ -212,8 +223,13 @@ class MyHttpSession {
 
     }
 
-    private fun getAvailableKotlinVersion(version: String?): String {
-        val isActualVersion = KotlinWrappersManager.getKotlinVersions().contains(version)
+    private fun getAvailableArrowVersion(version: String?): String {
+        val isActualVersion = KotlinWrappersManager.getArrowVersions().contains(version)
+        return if (isActualVersion && version != null) version else KotlinWrappersManager.defaultWrapper.wrapperVersion
+    }
+
+    private fun getAvailableKotlinVersion(arrowVersion: String, version: String?): String {
+        val isActualVersion = KotlinWrappersManager.getKotlinVersions(arrowVersion).contains(version)
         return if (isActualVersion && version != null) version else KotlinWrappersManager.defaultWrapper.wrapperVersion
     }
 

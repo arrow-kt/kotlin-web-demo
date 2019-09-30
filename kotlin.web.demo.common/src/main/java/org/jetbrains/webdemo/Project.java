@@ -35,13 +35,16 @@ public class Project {
     public List<String> readOnlyFileNames = new ArrayList<>();
     public String expectedOutput;
     private String compilerVersion = null;
+    private String arrowVersion = null;
 
     /**
      * For Jackson
      */
     public Project(
+            @JsonProperty("arrowVersion") String arrowVersion,
             @JsonProperty("compilerVersion") String compilerVersion
     ) {
+        this.arrowVersion = arrowVersion;
         this.compilerVersion = compilerVersion;
     }
 
@@ -64,6 +67,7 @@ public class Project {
             String confType,
             String originUrl,
             String compilerVersion,
+            String arrowVersion,
             List<String> readOnlyFileNames
     ) {
         this.id = id;
@@ -73,6 +77,7 @@ public class Project {
         this.originUrl = originUrl;
         this.files = new ArrayList<>();
         this.compilerVersion = compilerVersion;
+        this.arrowVersion = arrowVersion;
         this.readOnlyFileNames = readOnlyFileNames;
     }
 
@@ -95,6 +100,14 @@ public class Project {
         this.files = files;
         this.expectedOutput = expectedOutput;
         this.readOnlyFileNames = readOnlyFileNames;
+    }
+
+    public String getArrowVersion() {
+        return arrowVersion;
+    }
+
+    public void setArrowVersion(String arrowVersion) {
+        this.arrowVersion = arrowVersion;
     }
 
     public String getCompilerVersion() {

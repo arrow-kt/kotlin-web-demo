@@ -17,6 +17,7 @@
 package org.jetbrains.webdemo.kotlin
 
 import org.apache.commons.logging.LogFactory
+import org.jetbrains.webdemo.ArrowVersionsManager
 import org.jetbrains.webdemo.KotlinVersionsManager
 import org.jetbrains.webdemo.kotlin.classloader.ChildFirstURLClassLoader
 import java.net.URL
@@ -27,7 +28,7 @@ import kotlin.properties.Delegates
 object KotlinWrappersManager {
     private val log = LogFactory.getLog(KotlinWrappersManager::class.java)
     private val INITIALIZER_CLASSNAME = "org.jetbrains.webdemo.kotlin.impl.KotlinWrapperImpl"
-    private val wrappers = HashMap<String, KotlinWrapper>()
+    private val wrappers = HashMap<String, HashMap<String, KotlinWrapper>>()
 
     var defaultWrapper by Delegates.notNull<KotlinWrapper>()
         private set
@@ -36,30 +37,39 @@ object KotlinWrappersManager {
 
     fun init(wrappersDir: Path, javaLibraries: List<Path>, relativeClassDirectoryPath: Path) {
         this.wrappersDir = wrappersDir
-        for (versionConfig in KotlinVersionsManager.kotlinVersionConfigs) {
-            try {
-                val classPath = getForKotlinWrapperClassLoaderURLs(versionConfig.version, wrappersDir, relativeClassDirectoryPath)
-                val kotlinClassLoader = ChildFirstURLClassLoader(classPath, Thread.currentThread().contextClassLoader)
-                val kotlinWrapper = kotlinClassLoader.loadClass(INITIALIZER_CLASSNAME).newInstance() as KotlinWrapper
-                kotlinWrapper.init(javaLibraries, versionConfig)
-                wrappers.put(versionConfig.version, kotlinWrapper)
-                if (versionConfig.latestStable) {
-                    defaultWrapper = kotlinWrapper
+        for (arrowVersionConfig in ArrowVersionsManager.arrowVersionConfigs) {
+            val kotlinWrappers = HashMap<String, KotlinWrapper>()
+            for (supportedKotlinVersion in arrowVersionConfig.supportedKotlinVersions) {
+                try {
+                    val classPath = getForKotlinWrapperClassLoaderURLs(supportedKotlinVersion, wrappersDir, relativeClassDirectoryPath)
+                    val kotlinClassLoader = ChildFirstURLClassLoader(classPath, Thread.currentThread().contextClassLoader)
+                    val kotlinWrapper = kotlinClassLoader.loadClass(INITIALIZER_CLASSNAME).newInstance() as KotlinWrapper
+                    val kotlinVersionConfig = KotlinVersionsManager.kotlinVersionConfigs.find { it.version == supportedKotlinVersion }
+                    kotlinWrapper.init(javaLibraries, arrowVersionConfig, kotlinVersionConfig)
+                    kotlinWrappers[supportedKotlinVersion] = kotlinWrapper
+                    if (arrowVersionConfig.latestStable && kotlinVersionConfig?.latestStable!!) {
+                        defaultWrapper = kotlinWrapper
+                    }
+                } catch (e: Throwable) {
+                    log.error("Can't initialize kotlin version " + supportedKotlinVersion, e)
                 }
-            } catch (e: Throwable) {
-                log.error("Can't initialize kotlin version " + versionConfig.version, e)
-            }
 
+            }
+            wrappers[arrowVersionConfig.version] = kotlinWrappers
         }
     }
 
-    fun getKotlinVersions(): Set<String> = wrappers.keys
+    fun getArrowVersions(): Set<String> = wrappers.keys
 
-    fun getAllWrappers(): Collection<KotlinWrapper> = wrappers.values;
+    fun getKotlinVersions(arrowVersion: String): Set<String> = wrappers[arrowVersion]?.keys.orEmpty()
 
-    fun getKotlinWrapper(kotlinVersion: String?): KotlinWrapper? {
-        if (kotlinVersion == null) return defaultWrapper;
-        return wrappers[kotlinVersion]
+    fun getAllWrappers(): Collection<KotlinWrapper> = wrappers.values.fold(
+            emptyList(),
+            { list, wrappers -> list.plus(wrappers.values) })
+
+    fun getKotlinWrapper(arrowVersion: String?, kotlinVersion: String?): KotlinWrapper? {
+        if (arrowVersion == null && kotlinVersion == null) return defaultWrapper;
+        return wrappers[arrowVersion]?.get(kotlinVersion)
     }
 
     private fun getForKotlinWrapperClassLoaderURLs(kotlinVersion: String, wrappersDir: Path, relativeClassDirectoryPath: Path): Array<URL> {

@@ -20,6 +20,7 @@ package org.jetbrains.webdemo.kotlin.impl
 
 
 import org.jetbrains.kotlin.psi.KtFile
+import org.jetbrains.webdemo.ArrowVersionConfig
 import org.jetbrains.webdemo.KotlinVersionConfig
 import org.jetbrains.webdemo.kotlin.KotlinWrapper
 import org.jetbrains.webdemo.kotlin.KotlinWrappersManager
@@ -34,17 +35,21 @@ import java.nio.file.Path
 import java.util.*
 
 class KotlinWrapperImpl : KotlinWrapper {
+    private var arrowVersion: String? = null
+    private lateinit var arrowLibraries: Path
     private lateinit var jarsFolder: Path
     private var kotlinVersion: String? = null
     private var kotlinBuild: String? = null
     private lateinit var wrapperFolder: Path
     private lateinit var userLibFolder: Path
 
-    override fun init(javaLibraries: List<Path>, config: KotlinVersionConfig) {
+    override fun init(javaLibraries: List<Path>, arrowConfig: ArrowVersionConfig, config: KotlinVersionConfig) {
+        this.arrowVersion = arrowConfig.version
         this.kotlinVersion = config.version
         this.kotlinBuild = config.build
         WrapperLogger.init(kotlinVersion!!)
         wrapperFolder = KotlinWrappersManager.wrappersDir.resolve(kotlinVersion)
+        arrowLibraries = KotlinWrappersManager.wrappersDir.resolve("arrow").resolve(arrowVersion).resolve("libraries")
         jarsFolder = wrapperFolder.resolve("kotlin")
         userLibFolder = wrapperFolder.resolve("libraries")
         WrapperSettings.JS_LIB_ROOT = wrapperFolder.resolve("js")
@@ -92,6 +97,8 @@ class KotlinWrapperImpl : KotlinWrapper {
     override fun getKotlinLibraries(): MutableList<Path> {
         val libraries = ArrayList<Path>()
         userLibFolder.toFile().listFiles { pathname -> pathname.absolutePath.matches(Regex(".*\\.jar$"))}
+                ?.forEach { libraries.add(it.toPath()) }
+        arrowLibraries.toFile().listFiles { pathname -> pathname.absolutePath.matches(Regex(".*\\.jar$"))}
                 ?.forEach { libraries.add(it.toPath()) }
         return libraries
     }
