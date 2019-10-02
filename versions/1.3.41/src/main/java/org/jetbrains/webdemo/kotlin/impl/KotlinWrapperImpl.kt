@@ -111,6 +111,10 @@ class KotlinWrapperImpl : KotlinWrapper {
         return wrapperFolder
     }
 
+    override fun getArrowVersion(): String? {
+        return arrowVersion
+    }
+
     override fun getWrapperVersion(): String? {
         return kotlinVersion
     }

@@ -46,5 +46,7 @@ public interface KotlinWrapper {
 
     Path getWrapperFolder();
 
+    String getArrowVersion();
+
     String getWrapperVersion();
 }

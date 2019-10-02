@@ -225,10 +225,10 @@ class MyHttpSession {
 
     private fun getAvailableArrowVersion(version: String?): String {
         val isActualVersion = KotlinWrappersManager.getArrowVersions().contains(version)
-        return if (isActualVersion && version != null) version else KotlinWrappersManager.defaultWrapper.wrapperVersion
+        return if (isActualVersion && version != null) version else KotlinWrappersManager.defaultWrapper.arrowVersion
     }
 
-    private fun getAvailableKotlinVersion(arrowVersion: String, version: String?): String {
+    private fun getAvailableKotlinVersion(arrowVersion: String?, version: String?): String {
         val isActualVersion = KotlinWrappersManager.getKotlinVersions(arrowVersion).contains(version)
         return if (isActualVersion && version != null) version else KotlinWrappersManager.defaultWrapper.wrapperVersion
     }

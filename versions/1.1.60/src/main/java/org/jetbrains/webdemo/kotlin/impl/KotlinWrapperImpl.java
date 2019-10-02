@@ -127,6 +127,11 @@ public class KotlinWrapperImpl implements KotlinWrapper {
     }
 
     @Override
+    public String getArrowVersion() {
+        return arrowVersion;
+    }
+
+    @Override
     public String getWrapperVersion() {
         return kotlinVersion;
     }

@@ -61,7 +61,7 @@ object KotlinWrappersManager {
 
     fun getArrowVersions(): Set<String> = wrappers.keys
 
-    fun getKotlinVersions(arrowVersion: String): Set<String> = wrappers[arrowVersion]?.keys.orEmpty()
+    fun getKotlinVersions(arrowVersion: String?): Set<String> = wrappers[arrowVersion]?.keys.orEmpty()
 
     fun getAllWrappers(): Collection<KotlinWrapper> = wrappers.values.fold(
             emptyList(),
