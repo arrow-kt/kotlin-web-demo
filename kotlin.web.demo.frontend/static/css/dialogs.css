@@ -17,7 +17,7 @@
 /*java2kotlin codemirror style-Courier new Regular*/
 
 .ui-dialog {
-    border-radius: 5px;
+    border-radius: 1px;
     border: 1px solid #969696;
     padding: 0;
 }
@@ -76,7 +76,7 @@
     margin: 0 4px;
     background-color: #dcdcdc;
     border: 1px solid #969696;
-    border-radius: 3px;
+    border-radius: 1px;
 }
 
 .ui-dialog-buttonset .ui-button .ui-button-text {
@@ -154,7 +154,7 @@
 .tweet-dialog .buttonset .tweet-button {
     color: white;
     border: 0;
-    border-radius: 3px;
+    border-radius: 1px;
     font-weight: bold;
     padding: 8px 15px;
     background: #2599c4 linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.05));
@@ -170,7 +170,7 @@
     box-sizing: border-box;
     resize: vertical;
     border: 1px solid #e1e8ed;
-    border-radius: 3px;
+    border-radius: 1px;
 }
 
 
@@ -181,7 +181,7 @@
 #input-dialog input {
     width: 240px;
     border: 1px solid #969696;
-    border-radius: 3px;
+    border-radius: 1px;
     margin-left: 5px;
     margin-bottom: 5px;
 }
@@ -239,7 +239,7 @@
     border-bottom-width: 2px;
     padding-left: 5px;
     padding-right: 5px;
-    border-radius: 3px;
+    border-radius: 1px;
 }
 
 .shortcutSeparator {
@@ -262,7 +262,7 @@
     z-index: 10;
     background-color: #eeeeee;
     border: 1px solid #969696;
-    border-radius: 3px;
+    border-radius: 1px;
 }
 
 .words-help .text {
@@ -277,15 +277,15 @@
 }
 
 .words-help .text pre:first-of-type {
-    border-top-right-radius: 3px;
-    border-top-left-radius: 3px;
+    border-top-right-radius: 1px;
+    border-top-left-radius: 1px;
     padding-top: 6px;
     margin-top: 4px;
 }
 
 .words-help .text pre:last-of-type {
-    border-bottom-right-radius: 3px;
-    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 1px;
+    border-bottom-left-radius: 1px;
     padding-bottom: 6px;
     margin-bottom: 4px;
 }

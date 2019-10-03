@@ -50,7 +50,7 @@
 
 .global-header .try-kotlin-button, .global-header .get-kotlin-button {
     position: relative;
-    border-radius: 3px;
+    border-radius: 1px;
     box-shadow: 2px 2px 0 0 rgba(0, 0, 0, 0.1);
     background-color: #bcc0c6;
     color: #49525e;
@@ -62,7 +62,7 @@
 
 .page_index .global-header .get-kotlin-button {
     position: relative;
-    border-radius: 3px;
+    border-radius: 1px;
     box-shadow: 2px 2px 0 0 rgba(0, 0, 0, 0.1);
     background-color: #ee9529;
     color: #fff;
