@@ -36,6 +36,7 @@ abstract class Project(
                 "id" to id,
                 "name" to name,
                 "args" to args,
+                "arrowVersion" to arrowVersion,
                 "compilerVersion" to compilerVersion,
                 "confType" to confType,
                 "originUrl" to originUrl,
@@ -84,6 +85,7 @@ abstract class Project(
         contentLoaded = true
         originUrl = content.originUrl
         args = content.args
+        arrowVersion = content.arrowVersion
         compilerVersion = content.compilerVersion
         confType = content.confType
         files = content.files
@@ -121,6 +123,7 @@ abstract class Project(
     var files = arrayListOf<File>()
     open val name = name
     var contentLoaded = false
+    var arrowVersion: String? = null
     var compilerVersion: String? = null
     var args = ""
     var confType = "java"
