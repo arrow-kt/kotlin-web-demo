@@ -1,5 +1,13 @@
 [
   {
+    "version": "0.8.2",
+    "supportedKotlinVersions": [
+      "1.2.71",
+      "1.3.41",
+      "1.3.50"
+    ]
+  },
+  {
     "version": "0.9.0",
     "supportedKotlinVersions": [
       "1.2.71",
@@ -9,6 +17,14 @@
   },
   {
     "version": "0.10.0",
+    "supportedKotlinVersions": [
+      "1.2.71",
+      "1.3.41",
+      "1.3.50"
+    ]
+  },
+  {
+    "version": "0.10.1",
     "supportedKotlinVersions": [
       "1.2.71",
       "1.3.41",

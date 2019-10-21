@@ -51,6 +51,44 @@
       <module name="kotlin.web.demo.server_test" target="1.8" />
       <module name="kotlin.web.demo.test_main" target="1.8" />
       <module name="kotlin.web.demo.test_test" target="1.8" />
+      <module name="try.arrow-kt.io.arrow.0.10.0.main" target="1.8" />
+      <module name="try.arrow-kt.io.arrow.0.10.0.test" target="1.8" />
+      <module name="try.arrow-kt.io.arrow.0.10.1.main" target="1.8" />
+      <module name="try.arrow-kt.io.arrow.0.10.1.test" target="1.8" />
+      <module name="try.arrow-kt.io.arrow.0.8.2.main" target="1.8" />
+      <module name="try.arrow-kt.io.arrow.0.8.2.test" target="1.8" />
+      <module name="try.arrow-kt.io.arrow.0.9.0.main" target="1.8" />
+      <module name="try.arrow-kt.io.arrow.0.9.0.test" target="1.8" />
+      <module name="try.arrow-kt.io.arrow.main" target="1.8" />
+      <module name="try.arrow-kt.io.arrow.test" target="1.8" />
+      <module name="try.arrow-kt.io.kotlin.web.demo.backend.compilers.main" target="1.8" />
+      <module name="try.arrow-kt.io.kotlin.web.demo.backend.compilers.test" target="1.8" />
+      <module name="try.arrow-kt.io.kotlin.web.demo.backend.main" target="1.8" />
+      <module name="try.arrow-kt.io.kotlin.web.demo.backend.test" target="1.8" />
+      <module name="try.arrow-kt.io.kotlin.web.demo.common.main" target="1.8" />
+      <module name="try.arrow-kt.io.kotlin.web.demo.common.test" target="1.8" />
+      <module name="try.arrow-kt.io.kotlin.web.demo.executors.main" target="1.8" />
+      <module name="try.arrow-kt.io.kotlin.web.demo.executors.test" target="1.8" />
+      <module name="try.arrow-kt.io.kotlin.web.demo.frontend.main" target="1.8" />
+      <module name="try.arrow-kt.io.kotlin.web.demo.frontend.test" target="1.8" />
+      <module name="try.arrow-kt.io.kotlin.web.demo.server.main" target="1.8" />
+      <module name="try.arrow-kt.io.kotlin.web.demo.server.test" target="1.8" />
+      <module name="try.arrow-kt.io.kotlin.web.demo.test.main" target="1.8" />
+      <module name="try.arrow-kt.io.kotlin.web.demo.test.test" target="1.8" />
+      <module name="try.arrow-kt.io.main" target="1.8" />
+      <module name="try.arrow-kt.io.test" target="1.8" />
+      <module name="try.arrow-kt.io.versions.1.0.7.main" target="1.8" />
+      <module name="try.arrow-kt.io.versions.1.0.7.test" target="1.8" />
+      <module name="try.arrow-kt.io.versions.1.1.60.main" target="1.8" />
+      <module name="try.arrow-kt.io.versions.1.1.60.test" target="1.8" />
+      <module name="try.arrow-kt.io.versions.1.2.71.main" target="1.8" />
+      <module name="try.arrow-kt.io.versions.1.2.71.test" target="1.8" />
+      <module name="try.arrow-kt.io.versions.1.3.41.main" target="1.8" />
+      <module name="try.arrow-kt.io.versions.1.3.41.test" target="1.8" />
+      <module name="try.arrow-kt.io.versions.1.3.50.main" target="1.8" />
+      <module name="try.arrow-kt.io.versions.1.3.50.test" target="1.8" />
+      <module name="try.arrow-kt.io.versions.main" target="1.8" />
+      <module name="try.arrow-kt.io.versions.test" target="1.8" />
       <module name="versions-1.0.7_main" target="1.8" />
       <module name="versions-1.0.7_test" target="1.8" />
       <module name="versions-1.1.60_main" target="1.8" />
