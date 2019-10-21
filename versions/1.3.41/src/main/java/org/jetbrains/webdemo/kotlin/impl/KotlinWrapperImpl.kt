@@ -19,8 +19,8 @@
 package org.jetbrains.webdemo.kotlin.impl
 
 
+import arrow.ArrowVersionConfig
 import org.jetbrains.kotlin.psi.KtFile
-import org.jetbrains.webdemo.ArrowVersionConfig
 import org.jetbrains.webdemo.KotlinVersionConfig
 import org.jetbrains.webdemo.kotlin.KotlinWrapper
 import org.jetbrains.webdemo.kotlin.KotlinWrappersManager

@@ -16,15 +16,14 @@
 
 buildscript {
     repositories {
-        maven {
-            url "https://dl.bintray.com/kotlin/kotlin-dev"
-        }
+        mavenCentral()
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
     }
 }
 
-plugins {
-    id "com.github.jk1.tcdeps" version "0.15"
-}
+apply plugin: "kotlin"
 
 allprojects {
     configurations {

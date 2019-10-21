@@ -16,6 +16,7 @@
 
 package org.jetbrains.webdemo.handlers;
 
+import arrow.ArrowVersionsManager;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import com.fasterxml.jackson.databind.node.ObjectNode;
@@ -23,7 +24,6 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.webdemo.ApplicationSettings;
 import org.jetbrains.webdemo.CommonSettings;
 import org.jetbrains.webdemo.ErrorWriter;
-import org.jetbrains.webdemo.ArrowVersionsManager;
 import org.jetbrains.webdemo.KotlinVersionsManager;
 import org.jetbrains.webdemo.Project;
 import org.jetbrains.webdemo.examples.ExamplesUtils;

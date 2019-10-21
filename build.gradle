@@ -65,6 +65,7 @@ configure(allprojects.findAll({
 }
 
 configure([
+        project(':arrow'),
         project(':kotlin.web.demo.server'),
         project(':kotlin.web.demo.backend'),
         project(':kotlin.web.demo.common'),

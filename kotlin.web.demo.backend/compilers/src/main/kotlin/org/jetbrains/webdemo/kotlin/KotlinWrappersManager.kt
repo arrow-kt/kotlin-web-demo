@@ -16,8 +16,8 @@
 
 package org.jetbrains.webdemo.kotlin
 
+import arrow.ArrowVersionsManager
 import org.apache.commons.logging.LogFactory
-import org.jetbrains.webdemo.ArrowVersionsManager
 import org.jetbrains.webdemo.KotlinVersionsManager
 import org.jetbrains.webdemo.kotlin.classloader.ChildFirstURLClassLoader
 import java.net.URL

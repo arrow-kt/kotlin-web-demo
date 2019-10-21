@@ -16,8 +16,8 @@
 
 package org.jetbrains.webdemo.kotlin;
 
+import arrow.ArrowVersionConfig;
 import org.jetbrains.annotations.Nullable;
-import org.jetbrains.webdemo.ArrowVersionConfig;
 import org.jetbrains.webdemo.KotlinVersionConfig;
 import org.jetbrains.webdemo.kotlin.datastructures.*;
 
