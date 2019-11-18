@@ -13,8 +13,7 @@ jobs:
       env: # Or as an environment variable
         AWS_TRY_ARROW_PEM: ${{ secrets.AWS_TRY_ARROW_PEM }}
         AWS_EC2_IP_ADDRESS: ${{ secrets.AWS_EC2_IP_ADDRESS }}
-        AWS_EC2_SECRET: ${{ secrets.AWS_EC2_SECRET }}
       run: |
-        openssl aes-256-cbc -pass "pass:$AWS_EC2_SECRET" -in ./secret-action.txt -out ./try.arrow-kt.pem -d -a -nopad
+        echo $AWS_TRY_ARROW_PEM | base64 --decode > try.arrow-kt.pem
         chmod 400 ./try.arrow-kt.pem
         ssh -o "StrictHostKeyChecking no" -q -i ./try.arrow-kt.pem $AWS_EC2_IP_ADDRESS 'ls; exit'
