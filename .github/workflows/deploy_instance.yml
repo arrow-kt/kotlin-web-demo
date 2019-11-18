@@ -15,6 +15,6 @@ jobs:
         AWS_EC2_IP_ADDRESS: ${{ secrets.AWS_EC2_IP_ADDRESS }}
         AWS_EC2_SECRET: ${{ secrets.AWS_EC2_SECRET }}
       run: |
-        openssl aes-256-cbc -pass "pass:$AWS_EC2_SECRET" -in ./deploy/.secret-action.txt -out ./try.arrow-kt.pem -d -a -nopad
+        openssl aes-256-cbc -pass "pass:$AWS_EC2_SECRET" -in ./secret-action.txt -out ./try.arrow-kt.pem -d -a -nopad
         chmod 400 ./try.arrow-kt.pem
         ssh -o "StrictHostKeyChecking no" -q -i ./try.arrow-kt.pem $AWS_EC2_IP_ADDRESS 'ls; exit'
