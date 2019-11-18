@@ -14,6 +14,6 @@ jobs:
         AWS_TRY_ARROW_PEM: ${{ secrets.AWS_TRY_ARROW_PEM }}
         AWS_EC2_IP_ADDRESS: ${{ secrets.AWS_EC2_IP_ADDRESS }}
       run: |
-        printf "%s" $AWS_TRY_ARROW_PEM > ./try.arrow-kt.pem
+        printf "%s" $AWS_TRY_ARROW_PEM | base64 --decode > ./try.arrow-kt.pem
         chmod 400 ./try.arrow-kt.pem
         ssh -o "StrictHostKeyChecking no" -q -i ./try.arrow-kt.pem $AWS_EC2_IP_ADDRESS 'ls; exit'
