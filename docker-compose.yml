@@ -13,7 +13,10 @@ services:
   frontend:
     build: docker/frontend
     ports:
+        - 80:80
+        - 443:443
         - 8080:8080
+        - 8443:8443
     volumes:
         - ./kotlin.web.demo.server/build/libs/WebDemoWar.war:/usr/local/tomcat/webapps/ROOT.war
     depends_on:
