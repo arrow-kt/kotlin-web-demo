@@ -1,6 +1,9 @@
 name: Deployment of TryArrow in AWS
 
-on: [push]
+on:
+  push:
+    branches:
+    - master
 
 jobs:
   build:
@@ -16,4 +19,4 @@ jobs:
       run: |
         echo $AWS_TRY_ARROW_PEM | base64 --decode > try.arrow-kt.pem
         chmod 400 ./try.arrow-kt.pem
-        ssh -o "StrictHostKeyChecking no" -q -i ./try.arrow-kt.pem $AWS_EC2_IP_ADDRESS 'ls; exit'
+        ssh -o "StrictHostKeyChecking no" -q -i ./try.arrow-kt.pem $AWS_EC2_IP_ADDRESS 'sh deploy.sh; exit'
