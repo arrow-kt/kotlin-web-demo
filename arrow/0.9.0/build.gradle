@@ -1,0 +1,54 @@
+/*
+ * Copyright 2000-2019 JetBrains s.r.o.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+dependencies {
+    library group: 'io.arrow-kt', name: 'arrow-ank', version: '0.9.0'
+    library group: 'io.arrow-kt', name: 'arrow-ank-gradle', version: '0.9.0'
+    library group: 'io.arrow-kt', name: 'arrow-annotations', version: '0.9.0'
+    library group: 'io.arrow-kt', name: 'arrow-core-data', version: '0.9.0'
+    library group: 'io.arrow-kt', name: 'arrow-core-extensions', version: '0.9.0'
+    library group: 'io.arrow-kt', name: 'arrow-dagger', version: '0.9.0'
+    library group: 'io.arrow-kt', name: 'arrow-dagger-effects', version: '0.9.0'
+    library group: 'io.arrow-kt', name: 'arrow-dagger-effects-rx2', version: '0.9.0'
+    library group: 'io.arrow-kt', name: 'arrow-docs', version: '0.9.0'
+    library group: 'io.arrow-kt', name: 'arrow-effects-data', version: '0.9.0'
+    library group: 'io.arrow-kt', name: 'arrow-effects-extensions', version: '0.9.0'
+    library group: 'io.arrow-kt', name: 'arrow-effects-io-extensions', version: '0.9.0'
+    library group: 'io.arrow-kt', name: 'arrow-effects-reactor-data', version: '0.9.0'
+    library group: 'io.arrow-kt', name: 'arrow-effects-reactor-extensions', version: '0.9.0'
+    library group: 'io.arrow-kt', name: 'arrow-effects-rx2-data', version: '0.9.0'
+    library group: 'io.arrow-kt', name: 'arrow-effects-rx2-extensions', version: '0.9.0'
+    library group: 'io.arrow-kt', name: 'arrow-extras-data', version: '0.9.0'
+    library group: 'io.arrow-kt', name: 'arrow-extras-extensions', version: '0.9.0'
+    library group: 'io.arrow-kt', name: 'arrow-free-data', version: '0.9.0'
+    library group: 'io.arrow-kt', name: 'arrow-free-extensions', version: '0.9.0'
+    library group: 'io.arrow-kt', name: 'arrow-generic', version: '0.9.0'
+    library group: 'io.arrow-kt', name: 'arrow-integration-retrofit-adapter', version: '0.9.0'
+    library group: 'io.arrow-kt', name: 'arrow-kindedj', version: '0.9.0'
+    library group: 'io.arrow-kt', name: 'arrow-meta', version: '0.9.0'
+    library group: 'io.arrow-kt', name: 'arrow-mtl', version: '0.9.0'
+    library group: 'io.arrow-kt', name: 'arrow-optics', version: '0.9.0'
+    library group: 'io.arrow-kt', name: 'arrow-query-language', version: '0.9.0'
+    library group: 'io.arrow-kt', name: 'arrow-recursion-data', version: '0.9.0'
+    library group: 'io.arrow-kt', name: 'arrow-recursion-extensions', version: '0.9.0'
+    library group: 'io.arrow-kt', name: 'arrow-reflect', version: '0.9.0'
+    library group: 'io.arrow-kt', name: 'arrow-shadow', version: '0.9.0'
+    library group: 'io.arrow-kt', name: 'arrow-streams', version: '0.9.0'
+    library group: 'io.arrow-kt', name: 'arrow-syntax', version: '0.9.0'
+    library group: 'io.arrow-kt', name: 'arrow-test', version: '0.9.0'
+    library group: 'io.arrow-kt', name: 'arrow-typeclasses', version: '0.9.0'
+    library group: 'io.arrow-kt', name: 'arrow-validation', version: '0.9.0'
+}

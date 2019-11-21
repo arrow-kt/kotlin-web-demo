@@ -6,6 +6,7 @@ statistics
 .idea/*
 !.idea/runConfigurations/
 !.idea/vcs.xml
+arrow/*/kotlin
 versions/*/js
 versions/*/kotlin
 versions/*/executors.policy

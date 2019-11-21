@@ -1,5 +1,5 @@
 /*
- * Copyright 2000-2015 JetBrains s.r.o.
+ * Copyright 2000-2019 JetBrains s.r.o.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,13 +14,24 @@
  * limitations under the License.
  */
 
-package providers
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
+    }
+}
 
+apply plugin: "kotlin"
 
-enum class REQUEST_TYPE(val value: String){
-    ERROR("error"),
-    LOAD_PROJECT_NAME("loadProjectName"),
-    GET_ARROW_VERSIONS("getArrowVersions"),
-    GET_KOTLIN_VERSIONS("getKotlinVersions"),
-    COMPLETE("complete")
+allprojects {
+    configurations {
+        library
+    }
+
+    task copyKotlinLibs(type: Copy) {
+        from configurations.library
+        into projectDir.toString() + File.separator + "kotlin"
+    }
 }

@@ -30,6 +30,7 @@ CREATE TABLE IF NOT EXISTS projects (
   type    ENUM('USER_PROJECT', 'KOANS_TASK', 'INCOMPLETE_KOANS_TASK', 'ADVENT_OF_CODE_PROJECT') NOT NULL DEFAULT 'USER_PROJECT',
   task_id INT                                                                  DEFAULT NULL, #NULL for user projects
   compiler_version VARCHAR (45) DEFAULT NULL,
+  arrow_version VARCHAR (45) DEFAULT NULL,
   FOREIGN KEY (owner_id) REFERENCES users (id)
     ON DELETE CASCADE,
   FOREIGN KEY (task_id) REFERENCES koans_tasks (id)

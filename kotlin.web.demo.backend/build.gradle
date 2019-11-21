@@ -17,6 +17,10 @@ dependencies {
     providedCompile group: 'javax.servlet', name: 'javax.servlet-api', version: '3.0.1'
 }
 
+for (arrowVersion in arrowVersions) {
+    evaluationDependsOn(":arrow:$arrowVersion")
+}
+
 for (kotlinVersion in kotlinVersions) {
     evaluationDependsOn(":versions:$kotlinVersion")
 }
@@ -29,18 +33,25 @@ war {
     }
 
     for (kotlinVersion in kotlinVersions) {
-        def wrapperProject = project(":versions:$kotlinVersion")
-        from(wrapperProject.sourceSets.main.output) {
+        def kotlinProject = project(":versions:$kotlinVersion")
+        from(kotlinProject.sourceSets.main.output) {
             into("WEB-INF/kotlin-wrappers/$kotlinVersion/classes")
         }
-        from(wrapperProject.configurations['kotlinJS'].collect { zipTree(it) }) {
+        from(kotlinProject.configurations['kotlinJS'].collect { zipTree(it) }) {
             into "WEB-INF/kotlin-wrappers/$kotlinVersion/js"
         }
-        from(wrapperProject.configurations['kotlinJVM']) {
+        from(kotlinProject.configurations['kotlinJVM']) {
             into "WEB-INF/kotlin-wrappers/$kotlinVersion/kotlin"
         }
-        from(wrapperProject.configurations['library']) {
+        from(kotlinProject.configurations['library']) {
             into "WEB-INF/kotlin-wrappers/$kotlinVersion/libraries"
+        }
+    }
+
+    for (arrowVersion in arrowVersions) {
+        def arrowProject = project(":arrow:$arrowVersion")
+        from(arrowProject.configurations['library']) {
+            into "WEB-INF/kotlin-wrappers/arrow/$arrowVersion/libraries"
         }
     }
 }

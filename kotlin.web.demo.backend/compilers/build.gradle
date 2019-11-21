@@ -8,3 +8,7 @@ buildscript {
 }
 
 apply plugin: "kotlin"
+
+dependencies {
+    compile project(":arrow")
+}

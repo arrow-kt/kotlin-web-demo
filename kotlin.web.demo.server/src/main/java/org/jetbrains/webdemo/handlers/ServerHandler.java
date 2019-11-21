@@ -16,6 +16,7 @@
 
 package org.jetbrains.webdemo.handlers;
 
+import arrow.ArrowVersionsManager;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import com.fasterxml.jackson.databind.node.ObjectNode;
@@ -65,6 +66,9 @@ public class ServerHandler {
                 switch (request.getParameter("type")) {
                     case ("loadHelpForWords"):
                         sendHelpContentForWords(request, response);
+                        break;
+                    case ("getArrowVersions"):
+                        sendArrowVersions(request, response);
                         break;
                     case ("getKotlinVersions"):
                         sendKotlinVersions(request, response);
@@ -243,13 +247,23 @@ public class ServerHandler {
         }
     }
 
+    private void sendArrowVersions(HttpServletRequest request, HttpServletResponse response) {
+        try {
+            String message = objectMapper.writeValueAsString(ArrowVersionsManager.INSTANCE.getArrowVersionConfigs());
+            writeResponse(request, response, message, HttpServletResponse.SC_OK);
+        } catch (IOException e) {
+            ErrorWriter.log.error("Can't send Arrow versions", e);
+            writeResponse(request, response, "Can't send Arrow versions", HttpServletResponse.SC_BAD_REQUEST);
+        }
+    }
+
     private void sendKotlinVersions(HttpServletRequest request, HttpServletResponse response) {
         try {
             String message = objectMapper.writeValueAsString(KotlinVersionsManager.INSTANCE.getKotlinVersionConfigs());
             writeResponse(request, response, message, HttpServletResponse.SC_OK);
         } catch (IOException e) {
-            ErrorWriter.log.error("Can't send kotlin versions", e);
-            writeResponse(request, response, "Can't send kotlin versions", HttpServletResponse.SC_BAD_REQUEST);
+            ErrorWriter.log.error("Can't send Kotlin versions", e);
+            writeResponse(request, response, "Can't send Kotlin versions", HttpServletResponse.SC_BAD_REQUEST);
         }
     }
 
@@ -291,4 +305,3 @@ public class ServerHandler {
         }
     }
 }
-

@@ -65,6 +65,21 @@ object Application {
                     })
             )
     )
+
+    val arrowVersionView = KotlinVersionView(
+            document.getElementById("webdemo-arrow-version") as HTMLSelectElement,
+            onChange = { newValue ->
+                val project = accordion.selectedProjectView!!.project
+                project.arrowVersion = newValue
+                updateKotlinFrame(newValue)
+                project.save()
+                editor.removeStyles()
+                problemsView.clear()
+                editor.updateHighlighting()
+                Unit
+            }
+    )
+
     val versionView = KotlinVersionView(
             document.getElementById("webdemo-kotlin-version") as HTMLSelectElement,
             onChange = { newValue ->
@@ -409,6 +424,23 @@ object Application {
     }
 
     /**
+     * Getting list of available Arrow versions
+     *
+     * @see IframeDialog - loading kotlin version
+     */
+    private fun setArrowVersions() {
+        ajax(
+                url = generateAjaxUrl(REQUEST_TYPE.GET_ARROW_VERSIONS),
+                type = HTTPRequestType.GET,
+                dataType = DataType.JSON,
+                timeout = 1000,
+                success = { arrowVersions: Array<KotlinWrapperConfig> ->
+                    arrowVersionView.init(arrowVersions)
+                }
+        )
+    }
+
+    /**
      * Getting list of available Kotlin version
      * Loading kotlin JS version to iframeDialogs HashMap
      *
@@ -463,6 +495,7 @@ object Application {
     fun init() {
         jq("#result-tabs").tabs()
         initButtons()
+        setArrowVersions()
         setKotlinVersions()
 
         window.onfocus = {
