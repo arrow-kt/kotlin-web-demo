@@ -19,4 +19,5 @@ jobs:
       run: |
         echo $AWS_TRY_ARROW_PEM | base64 --decode > try.arrow-kt.pem
         chmod 400 ./try.arrow-kt.pem
+        scp -i ./try.arrow-kt.pem deploy.sh $AWS_EC2_IP_ADDRESS:~/deploy.sh
         ssh -o "StrictHostKeyChecking no" -q -i ./try.arrow-kt.pem $AWS_EC2_IP_ADDRESS 'sh deploy.sh; exit'
