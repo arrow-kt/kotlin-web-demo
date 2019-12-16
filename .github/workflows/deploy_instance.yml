@@ -16,9 +16,8 @@ jobs:
       env: # Or as an environment variable
         AWS_TRY_ARROW_PEM: ${{ secrets.AWS_TRY_ARROW_PEM }}
         AWS_EC2_IP_ADDRESS: ${{ secrets.AWS_EC2_IP_ADDRESS }}
-        AWS_EC2_USERNAME: ${{ secrets.AWS_EC2_USERNAME }}
       run: |
         echo $AWS_TRY_ARROW_PEM | base64 --decode > try.arrow-kt.pem
         chmod 400 ./try.arrow-kt.pem
-        scp -v -i ./try.arrow-kt.pem deploy.sh ${AWS_EC2_USERNAME}@${AWS_EC2_IP_ADDRESS}:~/deploy.sh
+        scp -v -i ./try.arrow-kt.pem deploy.sh $AWS_EC2_IP_ADDRESS:~/deploy.sh
         ssh -o "StrictHostKeyChecking no" -q -i ./try.arrow-kt.pem $AWS_EC2_IP_ADDRESS 'sh deploy.sh; exit'
