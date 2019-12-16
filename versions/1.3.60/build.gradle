@@ -34,9 +34,6 @@ apply plugin: "org.jetbrains.kotlin.jvm"
 
 
 repositories {
-    teamcityServer {
-        url = 'https://buildserver.labs.intellij.net/'
-    }
     maven {
         url  "https://dl.bintray.com/kotlin/kotlin-dev"
     }
