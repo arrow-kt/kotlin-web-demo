@@ -22,13 +22,15 @@ import com.fasterxml.jackson.module.kotlin.readValue
 
 object ArrowVersionsManager {
     val arrowVersionConfigs: List<ArrowVersionConfig>
-    val arrowVersions: List<String>
-    val latestStableVersion: String
+    private val arrowVersions: List<String>
+    private val latestVersion: String
+    private val latestStableVersion: String
 
     init {
         val configFile = ArrowVersionsManager::class.java.getResourceAsStream("/arrow-versions-config.json")
         arrowVersionConfigs = jacksonObjectMapper().readValue(configFile)
         arrowVersions = arrowVersionConfigs.map { it.version }
+        latestVersion = arrowVersionConfigs.find { it.latest }?.version ?: throw Exception("Latest Arrow version not specified");
         latestStableVersion = arrowVersionConfigs.find { it.latestStable }?.version ?: throw Exception("Latest stable Arrow version not specified");
     }
 }
@@ -37,4 +39,5 @@ object ArrowVersionsManager {
 data class ArrowVersionConfig(
     val version: String,
     val supportedKotlinVersions: List<String>,
+    val latest: Boolean = false,
     val latestStable: Boolean = false)
