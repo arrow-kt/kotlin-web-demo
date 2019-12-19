@@ -59,6 +59,10 @@
       <module name="try.arrow-kt.io.arrow.0.10.3.test" target="1.8" />
       <module name="try.arrow-kt.io.arrow.0.10.4-SNAPSHOT.main" target="1.8" />
       <module name="try.arrow-kt.io.arrow.0.10.4-SNAPSHOT.test" target="1.8" />
+      <module name="try.arrow-kt.io.arrow.0.10.4.main" target="1.8" />
+      <module name="try.arrow-kt.io.arrow.0.10.4.test" target="1.8" />
+      <module name="try.arrow-kt.io.arrow.0.10.5-SNAPSHOT.main" target="1.8" />
+      <module name="try.arrow-kt.io.arrow.0.10.5-SNAPSHOT.test" target="1.8" />
       <module name="try.arrow-kt.io.arrow.0.8.2.main" target="1.8" />
       <module name="try.arrow-kt.io.arrow.0.8.2.test" target="1.8" />
       <module name="try.arrow-kt.io.arrow.0.9.0.main" target="1.8" />
