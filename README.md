@@ -1,3 +1,5 @@
+[![Deployment of TryArrow in AWS](https://github.com/arrow-kt/try.arrow-kt.io/workflows/Deployment%20of%20TryArrow%20in%20AWS/badge.svg?branch=master)](https://try.arrow-kt.io)
+
 [![official JetBrains project](http://jb.gg/badges/official.svg)](https://confluence.jetbrains.com/display/ALL/JetBrains+on+GitHub)
 
 This repository contains sources for [try.kotl.in]( http://try.kotlinlang.org/)
