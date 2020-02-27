@@ -38,6 +38,14 @@
       "1.2.71",
       "1.3.41",
       "1.3.50"
+    ]
+  },
+  {
+    "version": "0.11.0-SNAPSHOT",
+    "supportedKotlinVersions": [
+      "1.2.71",
+      "1.3.41",
+      "1.3.50"
     ],
     "latest": true
   }
