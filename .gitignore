@@ -28,3 +28,4 @@ lib/kotlin-plugin/Kotlin
 build
 .gradle
 package-lock.json
+.idea
