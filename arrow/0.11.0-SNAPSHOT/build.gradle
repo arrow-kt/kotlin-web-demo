@@ -36,7 +36,6 @@ dependencies {
     library group: 'io.arrow-kt', name: 'arrow-fx-test', version: '0.11.0-SNAPSHOT'
     library group: 'io.arrow-kt', name: 'arrow-generic', version: '0.11.0-SNAPSHOT'
     library group: 'io.arrow-kt', name: 'arrow-incubator-test', version: '0.11.0-SNAPSHOT'
-    library group: 'io.arrow-kt', name: 'arrow-integrations-jackson-module', version: '0.11.0-SNAPSHOT'
     library group: 'io.arrow-kt', name: 'arrow-integrations-retrofit-adapter', version: '0.11.0-SNAPSHOT'
     library group: 'io.arrow-kt', name: 'arrow-kindedj', version: '0.11.0-SNAPSHOT'
     library group: 'io.arrow-kt', name: 'arrow-meta', version: '0.11.0-SNAPSHOT'
