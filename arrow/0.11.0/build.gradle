@@ -1,0 +1,56 @@
+/*
+ * Copyright 2000-2019 JetBrains s.r.o.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+dependencies {
+    library group: 'io.arrow-kt', name: 'arrow-ank', version: '0.11.0'
+    library group: 'io.arrow-kt', name: 'arrow-ank-gradle', version: '0.11.0'
+    library group: 'io.arrow-kt', name: 'arrow-annotations', version: '0.11.0'
+    library group: 'io.arrow-kt', name: 'arrow-aql', version: '0.11.0'
+    library group: 'io.arrow-kt', name: 'arrow-check', version: '0.11.0'
+    library group: 'io.arrow-kt', name: 'arrow-check-kotlintest', version: '0.11.0'
+    library group: 'io.arrow-kt', name: 'arrow-continuations', version: '0.11.0'
+    library group: 'io.arrow-kt', name: 'arrow-core', version: '0.11.0'
+    library group: 'io.arrow-kt', name: 'arrow-core-data', version: '0.11.0'
+    library group: 'io.arrow-kt', name: 'arrow-core-retrofit', version: '0.11.0'
+    library group: 'io.arrow-kt', name: 'arrow-core-test', version: '0.11.0'
+    library group: 'io.arrow-kt', name: 'arrow-free', version: '0.11.0'
+    library group: 'io.arrow-kt', name: 'arrow-free-data', version: '0.11.0'
+    library group: 'io.arrow-kt', name: 'arrow-fx', version: '0.11.0'
+    library group: 'io.arrow-kt', name: 'arrow-fx-coroutines', version: '0.11.0'
+    library group: 'io.arrow-kt', name: 'arrow-fx-coroutines-kotlinx-coroutines', version: '0.11.0'
+    library group: 'io.arrow-kt', name: 'arrow-fx-kotlinx-coroutines', version: '0.11.0'
+    library group: 'io.arrow-kt', name: 'arrow-fx-mtl', version: '0.11.0'
+    library group: 'io.arrow-kt', name: 'arrow-fx-reactor', version: '0.11.0'
+    library group: 'io.arrow-kt', name: 'arrow-fx-rx2', version: '0.11.0'
+    library group: 'io.arrow-kt', name: 'arrow-fx-test', version: '0.11.0'
+    library group: 'io.arrow-kt', name: 'arrow-generic', version: '0.11.0'
+    library group: 'io.arrow-kt', name: 'arrow-incubator-test', version: '0.11.0'
+    library group: 'io.arrow-kt', name: 'arrow-integrations-retrofit-adapter', version: '0.11.0'
+    library group: 'io.arrow-kt', name: 'arrow-kindedj', version: '0.11.0'
+    library group: 'io.arrow-kt', name: 'arrow-meta', version: '0.11.0'
+    library group: 'io.arrow-kt', name: 'arrow-mtl', version: '0.11.0'
+    library group: 'io.arrow-kt', name: 'arrow-mtl-data', version: '0.11.0'
+    library group: 'io.arrow-kt', name: 'arrow-optics', version: '0.11.0'
+    library group: 'io.arrow-kt', name: 'arrow-optics-mtl', version: '0.11.0'
+    library group: 'io.arrow-kt', name: 'arrow-optics-test', version: '0.11.0'
+    library group: 'io.arrow-kt', name: 'arrow-recursion', version: '0.11.0'
+    library group: 'io.arrow-kt', name: 'arrow-recursion-data', version: '0.11.0'
+    library group: 'io.arrow-kt', name: 'arrow-reflect', version: '0.11.0'
+    library group: 'io.arrow-kt', name: 'arrow-syntax', version: '0.11.0'
+    library group: 'io.arrow-kt', name: 'arrow-ui', version: '0.11.0'
+    library group: 'io.arrow-kt', name: 'arrow-ui-data', version: '0.11.0'
+    library group: 'io.arrow-kt', name: 'arrow-validation', version: '0.11.0'
+}
