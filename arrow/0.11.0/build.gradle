@@ -13,6 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+ 
+repositories {
+    maven { url 'https://dl.bintray.com/jannis/kotlin-pretty' }
+    maven { url 'https://dl.bintray.com/jannis/kparsec' }
+}
 
 dependencies {
     library group: 'io.arrow-kt', name: 'arrow-ank', version: '0.11.0'
