@@ -16,6 +16,8 @@
 
 repositories {
     maven { url "https://oss.jfrog.org/artifactory/oss-snapshot-local/" }
+    maven { url 'https://dl.bintray.com/jannis/kotlin-pretty' }
+    maven { url 'https://dl.bintray.com/jannis/kparsec' }
 }
 
 dependencies {
